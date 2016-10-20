@@ -9,6 +9,9 @@ public class PlayerMove : MonoBehaviour {
 	public float h;
 	public float a;
 	public float b;
+
+	string Direction = null;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -23,12 +26,22 @@ public class PlayerMove : MonoBehaviour {
 		a = GetComponent<Rigidbody2D> ().velocity.x;
 		b = GetComponent<Rigidbody2D> ().velocity.y;
 
-		if (a < maxSpeed) {
+		if (h > 0) {
+			Direction = "right";
+		}
+		if (h < 0) {
+			Direction = "left";
+		}
 
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (h*5, b);
 
-	
+		if (Direction == "right") {
 
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (10, b);
+		}
+
+		if (Direction == "left") {
+
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (-10, b);
 		}
 		/*if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
 			
